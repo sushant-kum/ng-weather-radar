@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start SCD with Mock Server",
+      "dependsOn": ["Start Mock Server", "Start SCD"],
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "serve::mock-server",
+      "label": "Start Mock Server",
+      "detail": "Starts the mock server for dev/testing",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "serve::app",
+      "problemMatcher": [],
+      "label": "Start SCD",
+      "detail": "Serves SCD on 4200 for dev/testing"
+    },
+    {
+      "type": "npm",
+      "script": "serve::app-with-warnings",
+      "problemMatcher": [],
+      "label": "Start SCD (with warnings)",
+      "detail": "Serves SCD on 4200 with --trace-warnings enabled"
+    }
+  ]
+}

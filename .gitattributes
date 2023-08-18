@@ -1,0 +1,11 @@
+*                       text eol=lf
+*.{cmd,[cC][mM][dD]}    text eol=crlf
+*.{bat,[bB][aA][tT]}    text eol=crlf
+*.png                   binary
+*.jpg                   binary
+*.jpeg                  binary
+*.eot                   binary
+*.otf                   binary
+*.ttf                   binary
+*.woff                  binary
+*.woff2                 binary

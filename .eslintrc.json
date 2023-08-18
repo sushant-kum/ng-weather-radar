@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "overrides": [
+    {
+      "files": ["src/**/*.ts"],
+      "excludedFiles": ["*.spec.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "eslint-config-ngx/recommended/typescript-config",
+        "eslint-config-ngx/recommended/angular-typescript-config"
+      ],
+      "settings": {
+        "import/extensions": [".ts", ".js"]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["eslint-config-ngx/recommended/angular-template-config"]
+    },
+    {
+      "files": ["src/**/*.spec.ts"],
+      "parserOptions": {
+        "project": ["./tsconfig.spec.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "eslint-config-ngx/recommended/typescript-config",
+        "eslint-config-ngx/recommended/karma-jasmine-config"
+      ],
+      "rules": {
+        "@typescript-eslint/no-empty-function": "off"
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "excludedFiles": ["src/**/*.*"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": ["eslint-config-ngx/recommended/typescript-config"]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "*.{js,ts}": ["ng-lint-staged lint --fix --", "prettier --write"],
+  "*.{css,html,js,json,md,scss,ts}": "prettier --write"
+}
