@@ -1,0 +1,19 @@
+@use "sass:map";
+
+$breakpoint-px: (
+  xs: 600,
+  s: 960,
+  m: 1280,
+  l: 1920,
+);
+
+$breakpoint-media-query-px: (
+  xs: "(max-width: #{map.get($breakpoint-px, xs) - 0.02}px)",
+  s:
+    "(min-width: #{map.get($breakpoint-px, xs)}px) and (max-width: #{map.get($breakpoint-px, s) - 0.02}px)",
+  m:
+    "(min-width: #{map.get($breakpoint-px, s)}px) and (max-width: #{map.get($breakpoint-px, m) - 0.02}px)",
+  l:
+    "(min-width: #{map.get($breakpoint-px, m)}px) and (max-width: #{map.get($breakpoint-px, l) - 0.02}px)",
+  xl: "(min-width: #{map.get($breakpoint-px, l)}px)",
+);

@@ -1,0 +1,22 @@
+@use "@angular/material" as mat;
+
+@import "../palettes/_index.scss";
+
+$ng-weather-radar-dark-primary: mat.define-palette($palette-primary);
+$ng-weather-radar-dark-accent: mat.define-palette($palette-accent);
+$ng-weather-radar-dark-warn: mat.define-palette($palette-warn);
+
+$ng-weather-radar-dark-typography: mat.define-typography-config(
+  $font-family: "Nunito, sans-serif",
+);
+
+$ng-weather-radar-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $ng-weather-radar-dark-primary,
+      accent: $ng-weather-radar-dark-accent,
+      warn: $ng-weather-radar-dark-warn,
+    ),
+    typography: $ng-weather-radar-dark-typography,
+  )
+);
