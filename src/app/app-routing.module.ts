@@ -7,6 +7,20 @@ const routes: Routes = [
     loadChildren: () =>
       import("./pages/root/root.module").then((module) => module.RootModule),
   },
+  {
+    path: "404",
+    loadChildren: () =>
+      import("./pages/http-error-not-found/http-error-not-found.module").then(
+        (module) => module.HttpErrorNotFoundModule
+      ),
+  },
+  {
+    path: "**",
+    loadChildren: () =>
+      import("./pages/http-error-not-found/http-error-not-found.module").then(
+        (module) => module.HttpErrorNotFoundModule
+      ),
+  },
 ];
 
 @NgModule({
