@@ -53,6 +53,9 @@ scullyStats.json
 /scully/**/*.js.map
 /scully/**/*.d.ts
 
+# Firebase
+.firebase
+
 # User defined
 .archive
 src/**/version-info.*

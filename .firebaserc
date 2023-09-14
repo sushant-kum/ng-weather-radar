@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "weather-radar-c13df"
+  },
+  "targets": {
+    "weather-radar-c13df": {
+      "hosting": {
+        "testbed": [
+          "testbed-weather-radar-c13df"
+        ],
+        "prod": [
+          "weather-radar-c13df"
+        ]
+      }
+    }
+  }
+}
