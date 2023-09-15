@@ -58,3 +58,6 @@ scullyStats.json
 
 # Firebase
 .firebase
+
+User defined
+.env

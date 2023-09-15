@@ -61,3 +61,4 @@ scullyStats.json
 package.json
 package-lock.json
 src/**/version-info.*
+.env

@@ -36,6 +36,8 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         node: ["18"]
+    env:
+      OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js ${{ matrix.node }}
@@ -46,7 +48,7 @@ jobs:
         run: npm ci
       - name: Build static files
         run: npm run tool:scully
-      - name: Deploy on firebase
+      - name: Deploy on Firebase - prod
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"

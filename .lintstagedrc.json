@@ -1,4 +1,5 @@
 {
   "*.{js,ts}": "ng-lint-staged lint --fix --",
-  "*.{css,html,js,json,md,scss,ts}": "prettier --write"
+  "*.{css,html,js,json,md,scss,ts}": "prettier --write",
+  "*": "detect-secrets-launcher --baseline .secrets.baseline"
 }

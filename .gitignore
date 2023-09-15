@@ -59,3 +59,4 @@ scullyStats.json
 # User defined
 .archive
 src/**/version-info.*
+.env
