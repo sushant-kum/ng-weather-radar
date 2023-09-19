@@ -9,5 +9,5 @@
 
 export const environment = {
   production: false,
-  OPENWEATHERMAP_API_KEY: "{OPENWEATHERMAP_API_KEY}", // NOTE: DO NOT CHECK-IN ACTUAL API KEY
+  openWeatherMapAPIKey: "{OPENWEATHERMAP_API_KEY}", // NOTE: DO NOT CHECK-IN ACTUAL API KEY
 };
