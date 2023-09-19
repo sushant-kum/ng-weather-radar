@@ -1,0 +1,35 @@
+<nav class="sidenav">
+  <form [formGroup]="formSidenav">
+    <mat-nav-list class="sidenav__item">
+      <label class="sidenav__item__label" for="sidenav__item__radio-group"
+        >Weather Unit</label
+      >
+      <mat-radio-group
+        id="sidenav__item__radio-group"
+        class="sidenav__item__radio-group"
+        formControlName="weatherUnit"
+      >
+        <mat-radio-button [value]="enumWeatherUnit.METRIC">°C</mat-radio-button>
+        <mat-radio-button [value]="enumWeatherUnit.IMPERIAL"
+          >°F</mat-radio-button
+        >
+      </mat-radio-group>
+    </mat-nav-list>
+
+    <mat-divider></mat-divider>
+
+    <mat-nav-list class="sidenav__item">
+      <label class="sidenav__item__label" for="sidenav__item__radio-group"
+        >Theme</label
+      >
+      <mat-radio-group
+        id="sidenav__item__radio-group"
+        class="sidenav__item__radio-group"
+        formControlName="darkMode"
+      >
+        <mat-radio-button [value]="false">Light</mat-radio-button>
+        <mat-radio-button [value]="true">Dark</mat-radio-button>
+      </mat-radio-group>
+    </mat-nav-list>
+  </form>
+</nav>

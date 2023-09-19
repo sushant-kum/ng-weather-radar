@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@import "../../../styles/themes/light.scss";
+
+$light-color-config: mat.get-color-config($ng-weather-radar-light-theme);
+$light-primary-palette: map.get($light-color-config, "primary");
+
+// Hamburger settings
+
+$hamburger-types: (squeeze);
+$hamburger-padding-x: 0;
+$hamburger-padding-y: 0;
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 4px;
+$hamburger-layer-spacing: 4px;
+$hamburger-hover-opacity: 1;
+$hamburger-layer-color: map.get($light-primary-palette, 500);

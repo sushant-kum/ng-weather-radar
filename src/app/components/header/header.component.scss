@@ -1,0 +1,152 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@import "../../../styles/themes/light.scss";
+@import "../../../styles/themes/dark.scss";
+@import "../../../styles/constants/screen-breakpoints.scss";
+@import "./header.component.variables.scss";
+@import "hamburgers/_sass/hamburgers/hamburgers.scss";
+
+$light-color-config: mat.get-color-config($ng-weather-radar-light-theme);
+$light-background-palette: map.get($ng-weather-radar-light-theme, "background");
+$light-primary-palette: map.get($light-color-config, "primary");
+
+$dark-color-config: mat.get-color-config($ng-weather-radar-dark-theme);
+$dark-background-palette: map.get($ng-weather-radar-dark-theme, "background");
+$dark-primary-palette: map.get($dark-color-config, "primary");
+
+:host {
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition-property: background-color, padding, box-shadow;
+  transition-duration: 0.5s;
+  backface-visibility: hidden;
+
+  &.app-header {
+    background-color: map.get($light-background-palette, "background");
+
+    &--scrolled {
+      padding: 8px 0;
+      background-color: map.get($light-background-palette, "app-bar");
+    }
+  }
+}
+
+.header {
+  padding: 0 16px;
+  margin: 0 auto;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-areas: "header__left header__right";
+
+  &__left {
+    grid-area: header__left;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    &__hamburger {
+      transform: translateY(2px);
+    }
+
+    &__home-link {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+
+      &__logo {
+        margin: -12px 0;
+        width: 64px;
+        height: 64px;
+        transition: all 0.5s;
+
+        &--scrolled {
+          margin: 0;
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      &__title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: mat.get-color-from-palette($light-primary-palette, 500);
+      }
+    }
+  }
+
+  &__right {
+    grid-area: header__right;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &__form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &__search {
+        width: 400px;
+
+        &__prefix-icon {
+          padding-left: 8px;
+          padding-right: 4px;
+          color: mat.get-color-from-palette($light-primary-palette, 500);
+        }
+      }
+
+      &__unit {
+        width: 75px;
+      }
+    }
+  }
+}
+
+::ng-deep .dark-mode {
+  .hamburger {
+    &-inner {
+      background-color: map.get($dark-primary-palette, 500) !important;
+
+      &::after,
+      &::before {
+        background-color: map.get($dark-primary-palette, 500) !important;
+      }
+    }
+  }
+
+  .header {
+    &__left {
+      &__home-link {
+        &__title {
+          color: mat.get-color-from-palette($dark-primary-palette, 500);
+        }
+      }
+    }
+
+    &__right {
+      &__form {
+        &__search {
+          &__prefix-icon {
+            color: mat.get-color-from-palette($dark-primary-palette, 500);
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-mode :host {
+  &.app-header {
+    background-color: map.get($dark-background-palette, "background");
+
+    &--scrolled {
+      background-color: map.get($dark-background-palette, "app-bar");
+    }
+  }
+}

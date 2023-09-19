@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@import "../styles/themes/light.scss";
+@import "../styles/themes/dark.scss";
+
+$light-color-config: mat.get-color-config($ng-weather-radar-light-theme);
+$light-background-palette: map.get($ng-weather-radar-light-theme, "background");
+$light-primary-palette: map.get($light-color-config, "primary");
+
+$dark-color-config: mat.get-color-config($ng-weather-radar-dark-theme);
+$dark-background-palette: map.get($ng-weather-radar-dark-theme, "background");
+$dark-primary-palette: map.get($dark-color-config, "primary");
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "app__header"
+    "app__container";
+
+  &__header {
+    grid-area: app__header;
+  }
+
+  &__container {
+    grid-area: app__container;
+
+    &__sidenav {
+      transition-property: top background-color;
+      transition-duration: 0.5s;
+      background-color: map.get($light-background-palette, "background");
+
+      &--scrolled {
+        background-color: map.get($light-background-palette, "app-bar");
+      }
+    }
+  }
+}
+
+.dark-mode {
+  .app {
+    &__container {
+      &__sidenav {
+        background-color: map.get($dark-background-palette, "background");
+
+        &--scrolled {
+          background-color: map.get($dark-background-palette, "app-bar");
+        }
+      }
+    }
+  }
+}

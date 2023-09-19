@@ -1,2 +1,34 @@
-<h1>Weather Radar</h1>
-<router-outlet></router-outlet>
+<section
+  class="app mat-app-background"
+  [ngClass]="{ 'dark-mode': state.darkMode }"
+>
+  <app-header
+    class="app__header"
+    [scrolledPage]="state.scrolledPage"
+    [(sidenavOpened)]="state.sidenavOpened"
+  ></app-header>
+
+  <mat-sidenav-container class="app__container">
+    <mat-sidenav
+      class="app__container__sidenav"
+      mode="over"
+      fixedInViewport="true"
+      [ngClass]="{ 'app__container__sidenav--scrolled': state.scrolledPage }"
+      [fixedTopGap]="state.scrolledPage ? 91 : 115"
+      [opened]="state.sidenavOpened"
+      (openedChange)="onSidenavOpenChange($event)"
+    >
+      <app-small-screen-sidenav
+        [sidenavOpened]="state.sidenavOpened"
+      ></app-small-screen-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="app__container__content">
+      <main class="app__container__content__main">
+        <router-outlet></router-outlet>
+      </main>
+
+      <app-footer class="app__container__content__footer"></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</section>

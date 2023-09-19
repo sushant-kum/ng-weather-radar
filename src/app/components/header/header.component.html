@@ -1,0 +1,104 @@
+<header class="header">
+  <section class="header__left">
+    <button
+      *ngIf="
+        state.currentScreenSize === enumBreakpointName.xs ||
+        state.currentScreenSize === enumBreakpointName.s
+      "
+      class="header__left__hamburger hamburger hamburger--squeeze"
+      mat-ripple
+      type="button"
+      [ngClass]="{
+        'is-active': state.hamburgerActive
+      }"
+      (click)="toggleSidenav()"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <a class="header__left__home-link" [routerLink]="['/']">
+      <img
+        class="header__left__home-link__logo"
+        src="/assets/images/logo-64x64.min.png"
+        [ngClass]="{
+          'header__left__home-link__logo--scrolled': scrolledPage
+        }"
+        [alt]="title"
+        [width]="scrolledPage ? 48 : 64"
+        [height]="scrolledPage ? 48 : 64"
+      />
+      <h1 class="header__left__home-link__title" [innerHTML]="title"></h1>
+    </a>
+  </section>
+
+  <section class="header__right">
+    <ng-container
+      *ngIf="
+        state.currentScreenSize !== enumBreakpointName.xs &&
+          state.currentScreenSize !== enumBreakpointName.s;
+        else templateSmallScreenSearch
+      "
+    >
+      <form class="header__right__form" [formGroup]="formHeaderRight">
+        <mat-form-field
+          class="header__right__form__search"
+          appearance="outline"
+          subscriptSizing="dynamic"
+        >
+          <fa-icon
+            class="header__right__form__search__prefix-icon"
+            matPrefix
+            [icon]="['fas', 'magnifying-glass']"
+          ></fa-icon>
+          <input
+            type="text"
+            placeholder="Search City"
+            matInput
+            formControlName="searchString"
+            aria-label="Search Input"
+            [matAutocomplete]="auto"
+          />
+
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            autoActiveFirstOption
+            (optionSelected)="citySearchOptionSelected($event)"
+          >
+            <mat-option
+              *ngFor="let option of citySearchResultsBehaviourSubject | async"
+              [value]="option.display"
+            >
+              {{ option.display }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field
+          class="header__right__form__unit"
+          appearance="outline"
+          subscriptSizing="dynamic"
+        >
+          <mat-select formControlName="weatherUnit">
+            <mat-option [value]="enumWeatherUnit.METRIC">°C</mat-option>
+            <mat-option [value]="enumWeatherUnit.IMPERIAL">°F</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </ng-container>
+
+    <ng-template #templateSmallScreenSearch>
+      <button
+        class="header__right__search-button"
+        type="button"
+        mat-icon-button
+        color="primary"
+        aria-label="Search"
+        (click)="toggleSearchModal()"
+      >
+        <fa-icon [icon]="['fas', 'magnifying-glass']"></fa-icon>
+      </button>
+    </ng-template>
+  </section>
+</header>

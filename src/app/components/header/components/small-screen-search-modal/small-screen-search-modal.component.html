@@ -1,0 +1,101 @@
+<section class="small-screen-search-modal">
+  <button
+    class="small-screen-search-modal__close-button"
+    mat-icon-button
+    mat-dialog-close
+    type="button"
+  >
+    <fa-icon [icon]="['fas', 'xmark']"></fa-icon>
+  </button>
+
+  <h1 class="small-screen-search-modal__title" mat-dialog-title>Search</h1>
+
+  <mat-dialog-content class="small-screen-search-modal__content">
+    <form
+      class="small-screen-search-modal__content__form"
+      [formGroup]="formSmallScreenSearch"
+    >
+      <mat-form-field
+        class="small-screen-search-modal__content__form__search"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <fa-icon
+          class="small-screen-search-modal__content__form__search__prefix-icon"
+          matPrefix
+          [icon]="['fas', 'magnifying-glass']"
+        ></fa-icon>
+        <input
+          type="text"
+          placeholder="Search City"
+          matInput
+          formControlName="searchString"
+          aria-label="Search Input"
+        />
+      </mat-form-field>
+    </form>
+
+    <div
+      *ngIf="
+        (citySearchResultsBehaviourSubject | async)?.length === 0 ||
+          state.loadingSearchResults;
+        else templateSearchResults
+      "
+      class="small-screen-search-modal__content__no-result"
+    >
+      <ng-container
+        *ngIf="!state.loadingSearchResults; else templateLoadingSearchResults"
+      >
+        <fa-icon
+          size="3x"
+          [icon]="
+            formSmallScreenSearch.get('searchString')?.value
+              ? ['far', 'face-frown']
+              : ['far', 'face-meh-blank']
+          "
+        ></fa-icon>
+        <div mat-body-1>
+          {{
+            formSmallScreenSearch.get("searchString")?.value
+              ? "No search results found"
+              : "Search above to get results"
+          }}
+        </div>
+      </ng-container>
+
+      <ng-template #templateLoadingSearchResults>
+        <mat-spinner diameter="80" strokeWidth="5"></mat-spinner>
+      </ng-template>
+    </div>
+
+    <ng-template #templateSearchResults>
+      <mat-list class="small-screen-search-modal__content__search-results">
+        <div mat-subheader>Search Results</div>
+
+        <mat-divider></mat-divider>
+
+        <ng-container
+          *ngFor="let item of citySearchResultsBehaviourSubject | async"
+        >
+          <mat-list-item
+            class="small-screen-search-modal__content__search-results__item"
+            [routerLink]="['/', 'weather']"
+            [queryParams]="{
+              lat: item.coordinates.lat,
+              lon: item.coordinates.lon
+            }"
+          >
+            <fa-icon
+              class="small-screen-search-modal__content__search-results__item__prefix-icon"
+              matListItemIcon
+              [icon]="['fas', 'location-pin']"
+            ></fa-icon>
+            <div matListItemTitle>{{ item.display }}</div>
+          </mat-list-item>
+
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
+    </ng-template>
+  </mat-dialog-content>
+</section>

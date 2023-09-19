@@ -8,6 +8,13 @@ const routes: Routes = [
       import("./pages/root/root.module").then((module) => module.RootModule),
   },
   {
+    path: "weather",
+    loadChildren: () =>
+      import("./pages/weather/weather.module").then(
+        (module) => module.WeatherModule
+      ),
+  },
+  {
     path: "404",
     loadChildren: () =>
       import("./pages/http-error-not-found/http-error-not-found.module").then(
